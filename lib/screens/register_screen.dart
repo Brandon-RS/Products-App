@@ -1,17 +1,17 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:products_app/services/services.dart';
+import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
 
-import 'package:products_app/providers/login_form_provider.dart';
+import 'package:products_app/services/services.dart';
+import 'package:products_app/providers/providers.dart';
 import 'package:products_app/screens/screens.dart';
 import 'package:products_app/ui/input_decoration.dart';
 import 'package:products_app/widgets/widgets.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
-  static const String routeName = 'Login';
+  static const String routeName = 'Register';
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
-                    Text('Login', style: Theme.of(context).textTheme.headline4),
+                    Text('Crear cuenta', style: Theme.of(context).textTheme.headline4),
                     const SizedBox(height: 30),
                     ChangeNotifierProvider(
                       create: (_) => LoginFormProvider(),
@@ -38,16 +38,15 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
-              // Text('Crear una nueva cuenta', style: Theme.of(context).textTheme.button),
               RichText(
                 text: TextSpan(
                   style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
                   children: [
-                    const TextSpan(text: 'No tienes una cuenta?, '),
+                    const TextSpan(text: 'Ya tienes una cuenta?, '),
                     TextSpan(
                       text: 'Click aqui!',
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => Navigator.pushReplacementNamed(context, RegisterScreen.routeName),
+                        ..onTap = () => Navigator.pushReplacementNamed(context, LoginScreen.routeName),
                       style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -122,7 +121,7 @@ class _LoginForm extends StatelessWidget {
                     if (!loginForm.isValidForm()) return;
                     loginForm.isLoading = true;
 
-                    final String? errorMessage = await authService.login(loginForm.email, loginForm.password);
+                    final String? errorMessage = await authService.createUser(loginForm.email, loginForm.password);
 
                     if (errorMessage == null) {
                       Navigator.pushReplacementNamed(context, HomeScreen.routeName);

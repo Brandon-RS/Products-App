@@ -5,8 +5,6 @@ import 'package:products_app/screens/screens.dart';
 import 'package:products_app/services/services.dart';
 import 'package:provider/provider.dart';
 
-// TODO: reemplazar las imagenes por imageDecoration
-
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -27,6 +25,7 @@ class AppSatate extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => AuthService()),
         ChangeNotifierProvider(create: (_) => ProductsService()),
       ],
       child: const MyApp(),
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Products App',
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey[300],
         appBarTheme: const AppBarTheme(elevation: 0, color: Colors.indigo),
@@ -49,10 +48,11 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.indigo,
         ),
       ),
-      initialRoute: HomeScreen.routeName,
+      initialRoute: LoginScreen.routeName,
       routes: {
         HomeScreen.routeName: (_) => const HomeScreen(),
         LoginScreen.routeName: (_) => const LoginScreen(),
+        RegisterScreen.routeName: (_) => const RegisterScreen(),
         ProductScreen.routeName: (_) => const ProductScreen(),
       },
       debugShowCheckedModeBanner: false,
