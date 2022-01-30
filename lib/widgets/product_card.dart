@@ -139,7 +139,7 @@ class _BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return FadeInImage(
       placeholder: const AssetImage('assets/images/jar-loading.gif'),
-      image: NetworkImage(image ?? 'https://virtual.trivo.com.ec/img/no-img-placeholder.png'),
+      image: NetworkImage(image ?? 'https://res.cloudinary.com/brandon-rs/image/upload/v1643560194/no-image_suebjt.jpg'),
       fit: BoxFit.cover,
       width: double.infinity,
       height: 400,

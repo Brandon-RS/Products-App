@@ -39,7 +39,7 @@ class ProductImage extends StatelessWidget {
     if (picture == null) {
       return const FadeInImage(
         placeholder: AssetImage('assets/images/jar-loading.gif'),
-        image: NetworkImage('https://virtual.trivo.com.ec/img/no-img-placeholder.png'),
+        image: NetworkImage('https://res.cloudinary.com/brandon-rs/image/upload/v1643560194/no-image_suebjt.jpg'),
         fit: BoxFit.cover,
       );
     }
@@ -47,7 +47,7 @@ class ProductImage extends StatelessWidget {
     if (picture.startsWith('http')) {
       return FadeInImage(
         placeholder: const AssetImage('assets/images/jar-loading.gif'),
-        image: NetworkImage(url ?? 'https://virtual.trivo.com.ec/img/no-img-placeholder.png'),
+        image: NetworkImage(url ?? 'https://res.cloudinary.com/brandon-rs/image/upload/v1643560194/no-image_suebjt.jpg'),
         fit: BoxFit.cover,
       );
     }

@@ -91,14 +91,31 @@ class _LoginForm extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecorations.authInputDecoration(
               prefixIcon: Icons.remove_red_eye_outlined,
-              hintText: 'Your password',
-              labelText: 'Password',
+              hintText: 'Enter your password',
+              labelText: 'New Password',
             ),
             cursorColor: Colors.deepPurple,
             onChanged: (value) => loginForm.password = value,
             validator: (value) {
               if (value != null && value.length >= 8) return null;
               return 'La contraseña debe tener 8 caracteres o mas';
+            },
+          ),
+          const SizedBox(height: 30),
+          TextFormField(
+            autocorrect: false,
+            obscureText: true,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecorations.authInputDecoration(
+              prefixIcon: Icons.remove_red_eye_outlined,
+              hintText: 'Enter same password',
+              labelText: 'Confirm Password',
+            ),
+            cursorColor: Colors.deepPurple,
+            onChanged: (value) => loginForm.validPass = value,
+            validator: (value) {
+              if (value == loginForm.password) return null;
+              return 'La contraseña es diferente!';
             },
           ),
           const SizedBox(height: 30),
@@ -126,8 +143,7 @@ class _LoginForm extends StatelessWidget {
                     if (errorMessage == null) {
                       Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                     } else {
-                      // TODO: mostrar error en pantalla
-                      print(errorMessage);
+                      NotificationsService.showSnackBar(errorMessage);
                       loginForm.isLoading = false;
                     }
                   },

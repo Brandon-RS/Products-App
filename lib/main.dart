@@ -48,12 +48,14 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.indigo,
         ),
       ),
-      initialRoute: LoginScreen.routeName,
+      scaffoldMessengerKey: NotificationsService.messengerKey,
+      initialRoute: CheckAuthScreen.routeName,
       routes: {
         HomeScreen.routeName: (_) => const HomeScreen(),
         LoginScreen.routeName: (_) => const LoginScreen(),
         RegisterScreen.routeName: (_) => const RegisterScreen(),
         ProductScreen.routeName: (_) => const ProductScreen(),
+        CheckAuthScreen.routeName: (_) => const CheckAuthScreen(),
       },
       debugShowCheckedModeBanner: false,
     );

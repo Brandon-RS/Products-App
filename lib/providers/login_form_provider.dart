@@ -5,6 +5,7 @@ class LoginFormProvider with ChangeNotifier {
 
   String email = '';
   String password = '';
+  String validPass = '';
 
   bool _isLoading = false;
 
